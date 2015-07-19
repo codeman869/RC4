@@ -1,23 +1,17 @@
 class RC4
 
+  attr_reader :key
+
   def initialize(str)
     @i, @j = 0 , 0
 
     ini_state(str)
   end
 
-  def getbytes(numHex)
-    numHex.times do
-      @i = (@i + 1) % 256
-      @j = (@j+ @S[@i]) % 256
-     
-      @S[@i], @S[@j] = @S[@j], @S[@i]
-      
-      puts @S[(@S[@i]+@S[@j])%256].to_s(16)
-    end
+
+  def encrypt(text)
 
   end
-
 
 
   private
@@ -35,6 +29,18 @@ class RC4
       
       @S[i],@S[j] = @S[j],@S[i]
     end
+
+    @key = Enumerator.new do |k|
+      while true
+        @i = (@i + 1) % 256
+        @j = (@j+ @S[@i]) % 256
+     
+        @S[@i], @S[@j] = @S[@j], @S[@i]
+      
+        k.yield @S[(@S[@i]+@S[@j])%256]
+      end
+    end
+
   end
 
 end
