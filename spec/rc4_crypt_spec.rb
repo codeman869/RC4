@@ -42,4 +42,19 @@ describe RC4 do
 		end
 
 	end
+
+	describe "#decrypt!" do
+		it "returns a decrypted text string from a string of encrypted text" do
+			output = "Attack at dawn"
+			@crypto.encrypt!(output)
+			decrypter = RC4.new("Secret")
+			decrypter.decrypt!(output)
+			
+			expect(output).to eql "Attack at dawn"
+
+		end
+
+	end
+
+
 end
