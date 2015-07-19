@@ -9,9 +9,17 @@ class RC4
   end
 
 
-  def encrypt(text)
-
+  def encrypt!(text)
+    n = 0
+    while n < text.length
+      
+      text.setbyte(n,key.next ^ text.getbyte(n))
+      n = n.next
+    end
+    text
   end
+
+  alias_method :decrypt!, :encrypt!
 
 
   private
