@@ -42,9 +42,4 @@ end
 
 
 
-test = RC4.new("Secret")
-
-test.getbytes(8)
-
-
 
