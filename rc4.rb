@@ -1,28 +1,53 @@
 class RC4
-    
-      
-       def initialize(key)
-           @key = key.split()
-           @S = Array.new
-           
-           for i in 0..255
-            @S[i] = i
-            end
-           
-       end
-   
-    private
-    
-    def ksa
-       j = 0
-       for i in 0..255
-            j = (j + @S[i] + @key[i % key.length])
-        end
+
+  def initialize(key)
+    @key = key
+    @S = Array.new
+
+    for i in 0..255
+      @S[i] = i
     end
+
+    ksa
+  end
+
+  def gen(numHex)
+    i = 0
+    j = 0
+
+    numHex.times do
+      i = (i + 1) % 256
+      j = (j+ @S[i]) % 256
+     
+      @S[i], @S[j] = @S[j], @S[i]
+      
+      puts @S[(@S[i]+@S[j])%256].to_s(16)
+    end
+
+  end
+
+  private
+
+  STATE = (0..255).to_a
+
+  def ksa
+    j = 0
     
+    for i in 0..255
+      j = (j + @S[i] + @key.getbyte(i % @key.length)) % 256
+      
+      @S[i],@S[j] = @S[j],@S[i]
+    end
+  end
+
 end
 
-enc = RC4.new("EB9F7781B734CA72A719")
+
+
+
+test = RC4.new("Secret")
+
+test.gen(8)
 
 
 
