@@ -1,8 +1,8 @@
 class RC4
 
-  def initialize(key)
-    @key = key
-    ini_state
+  def initialize(str)
+    
+    ini_state(str)
   end
 
   def getbytes(numHex)
@@ -24,14 +24,14 @@ class RC4
 
   STATE = (0..255).to_a
 
-  def ini_state
+  def ini_state(key)
 
     @S = STATE.dup
 
     j = 0
     
     for i in 0..255
-      j = (j + @S[i] + @key.getbyte(i % @key.length)) % 256
+      j = (j + @S[i] + key.getbyte(i % key.length)) % 256
       
       @S[i],@S[j] = @S[j],@S[i]
     end
