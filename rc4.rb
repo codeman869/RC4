@@ -2,16 +2,10 @@ class RC4
 
   def initialize(key)
     @key = key
-    @S = Array.new
-
-    for i in 0..255
-      @S[i] = i
-    end
-
-    ksa
+    ini_state
   end
 
-  def gen(numHex)
+  def getbytes(numHex)
     i = 0
     j = 0
 
@@ -30,7 +24,10 @@ class RC4
 
   STATE = (0..255).to_a
 
-  def ksa
+  def ini_state
+
+    @S = STATE.dup
+
     j = 0
     
     for i in 0..255
@@ -47,7 +44,7 @@ end
 
 test = RC4.new("Secret")
 
-test.gen(8)
+test.getbytes(8)
 
 
 
