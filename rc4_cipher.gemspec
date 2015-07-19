@@ -9,7 +9,7 @@ Gem::Specification.new do |s|
 	s.description = 'A simple implementation of the RC4 Cipher'
 	s.authors = ["Cody Deckard"]
 	s.email = "cjdeckard@gmail.com"
-	s.files = ['lib/rc4_cipher.rb', 'spec']
+	s.files = ['lib/rc4_cipher.rb', 'spec', 'README.md']
 	s.require_paths = ['lib']
 	s.test_files = Dir.glob('spec/*_spec.rb')
 	s.license = 'MIT'
