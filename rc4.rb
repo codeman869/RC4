@@ -1,24 +1,24 @@
 class RC4
 
   def initialize(str)
-    
+    @i, @j = 0 , 0
+
     ini_state(str)
   end
 
   def getbytes(numHex)
-    i = 0
-    j = 0
-
     numHex.times do
-      i = (i + 1) % 256
-      j = (j+ @S[i]) % 256
+      @i = (@i + 1) % 256
+      @j = (@j+ @S[@i]) % 256
      
-      @S[i], @S[j] = @S[j], @S[i]
+      @S[@i], @S[@j] = @S[@j], @S[@i]
       
-      puts @S[(@S[i]+@S[j])%256].to_s(16)
+      puts @S[(@S[@i]+@S[@j])%256].to_s(16)
     end
 
   end
+
+
 
   private
 
